@@ -2,9 +2,10 @@
  
   $.fn.tweet = function(o){
     var s = {
-      username: ["seaofclouds"],              // [string]   required, unless you want to display our tweets. :) it can be an array, just do ["username1","username2","etc"]
-      list: null,                              //[string]   optional name of list belonging to username
+      username: ["potomak"],                  // [string]   required, unless you want to display our tweets. :) it can be an array, just do ["username1","username2","etc"]
+      list: null,                             // [string]   optional name of list belonging to username
       avatar_size: null,                      // [integer]  height and width of avatar if displayed (48px max)
+      page: 1,                                // [integer]  what page do you want to show?
       count: 3,                               // [integer]  how many tweets to display?
       intro_text: null,                       // [string]   do you want text BEFORE your your tweets?
       outro_text: null,                       // [string]   do you want text AFTER your tweets?
@@ -15,7 +16,8 @@
       auto_join_text_reply: "i replied to",   // [string]   auto tense for replies: "i replied to" @someone "with"
       auto_join_text_url: "i was looking at", // [string]   auto tense for urls: "i was looking at" http:...
       loading_text: null,                     // [string]   optional loading text, displayed while tweets load
-      query: null                             // [string]   optional search query
+      query: null,                            // [string]   optional search query
+      callback: null                          // [function] success callback
     };
     
     if(o) $.extend(s, o);
@@ -101,7 +103,7 @@
         return proto+'//api.twitter.com/1/statuses/user_timeline.json?screen_name='+s.username[0]+'&count='+s.count+'&include_rts=1&callback=?';
       } else {
         var query = (s.query || 'from:'+s.username.join(' OR from:'));
-        return proto+'//search.twitter.com/search.json?&q='+encodeURIComponent(query)+'&rpp='+s.count+'&callback=?';
+        return proto+'//search.twitter.com/search.json?&q='+encodeURIComponent(query)+'&page='+s.page+'&rpp='+s.count+'&callback=?';
       }
     }
 
@@ -117,6 +119,8 @@
 
       if (s.loading_text) $(widget).append(loading);
       $.getJSON(build_url(), function(data){
+        s.callback(data);
+        
         if (s.loading_text) loading.remove();
         if (s.intro_text) list.before(intro);
         var tweets = (data.results || data);

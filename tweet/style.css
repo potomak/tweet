@@ -21,6 +21,8 @@ body {
     body .container h3 {
       font-size: 140%;
       margin-bottom: .4em; }
+    body .container form {
+      margin-bottom: 20px}
     body .container ul {
       padding-left: 2em; }
       body .container ul li {
@@ -52,3 +54,15 @@ body {
       color: #8ADEE2; }
     body .container .twoot {
       padding-top: 3em; }
+
+    body .container .navigator {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    body .container .navigator .links {
+      float: left;
+      color: #8ADEE2;
+    }
+    body .container .navigator .page {
+      float: right;
+    }
