@@ -66,3 +66,19 @@ body {
     body .container .navigator .page {
       float: right;
     }
+    
+    body .container #drop-area {
+      font-family: Georgia, serif;
+      color: #085258;
+      -webkit-border-radius: .5em;
+      -moz-border-radius: .5em;
+      border-radius: .5em;
+      margin: 0;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #8ADEE2;
+      height: 100px;
+    }
+    body .container #drop-area.drophover {
+      background-color: #AADEF2;
+    }

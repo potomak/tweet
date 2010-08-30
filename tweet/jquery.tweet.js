@@ -152,12 +152,13 @@
           var text = '<span class="tweet_text">' +$([item.text]).linkUrl().linkUser().linkHash().makeHeart().capAwesome().capEpic()[0]+ '</span>';
 
           // until we create a template option, arrange the items below to alter a tweet's display.
-          list.append('<li>' + avatar + date + join + text + '</li>');
+          list.append('<li class="status">' + avatar + date + join + text + '</li>');
 
           list.children('li:first').addClass('tweet_first');
           list.children('li:odd').addClass('tweet_even');
           list.children('li:even').addClass('tweet_odd');
         });
+        list.children('li:last').addClass('tweet_last');
         if (s.outro_text) list.after(outro);
         $(widget).trigger("loaded").trigger((tweets.length == 0 ? "empty" : "full"));
       });

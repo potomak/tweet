@@ -12,6 +12,14 @@ tweetSearch = (function() {
 
         tweetSearch.log(event);
       });
+      
+      $('#drop-area').droppable({
+        hoverClass: 'drophover',
+        drop: tweetSearch.ondrop
+      });
+    },
+    ondrop: function(event, ui) {
+      $(this).html($(ui.draggable).children('.tweet_time').children('a').attr('href'));
     },
     search: function(query, page) {
       $("#search_results").html('');
@@ -35,6 +43,11 @@ tweetSearch = (function() {
       
       $('.navigator').show();
       $('.navigator .page span').html(data.page);
+      
+      //
+      // NOTE: this doesn't work --> $('.status').draggable();
+      //
+      setTimeout(function() {$('.status').draggable({opacity: 0.5, revert: true })}, 0);
     },
     next: function(query) {
       tweetSearch.search(query, ++tweetSearch.page);
@@ -43,7 +56,7 @@ tweetSearch = (function() {
       tweetSearch.search(query, --tweetSearch.page);
     },
     log: function(obj) {
-      if(console !== undefined) {
+      if(typeof console != 'undefined') {
         console.log(obj);
       }
     }

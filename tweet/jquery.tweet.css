@@ -4,10 +4,12 @@
   color: #085258; }
   .tweet .tweet_list, .query .tweet_list {
     -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #8ADEE2; }
+    background-color: #9AEEF2; }
     .tweet .tweet_list .awesome, .tweet .tweet_list .epic, .query .tweet_list .awesome, .query .tweet_list .epic {
       text-transform: uppercase; }
     .tweet .tweet_list li, .query .tweet_list li {
@@ -18,6 +20,22 @@
         color: #0C717A; }
     .tweet .tweet_list .tweet_even, .query .tweet_list .tweet_even {
       background-color: #91E5E7; }
+    .tweet .tweet_list .tweet_odd, .query .tweet_list .tweet_odd {
+      background-color: #8ADEE2; }
+    .tweet .tweet_list .tweet_first, .query .tweet_list .tweet_first {
+      -webkit-border-top-left-radius: .5em;
+      -webkit-border-top-right-radius: .5em;
+      -moz-border-radius-topleft: .5em;
+      -moz-border-radius-topright: .5em;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em; }
+    .tweet .tweet_list .tweet_last, .query .tweet_list .tweet_last {
+      -webkit-border-bottom-right-radius: .5em;
+      -webkit-border-bottom-left-radius: .5em;
+      -moz-border-radius-bottomright: .5em;
+      -moz-border-radius-bottomleft: .5em;
+      border-bottom-right-radius: .5em;
+      border-bottom-left-radius: .5em; }
     .tweet .tweet_list .tweet_avatar, .query .tweet_list .tweet_avatar {
       padding-right: .5em;
       float: left; }
