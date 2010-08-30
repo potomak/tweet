@@ -43,7 +43,7 @@ tweetSearch = (function() {
       tweetSearch.search(query, --tweetSearch.page);
     },
     log: function(obj) {
-      if(console) {
+      if(console !== undefined) {
         console.log(obj);
       }
     }
