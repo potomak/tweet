@@ -119,7 +119,7 @@
 
       if (s.loading_text) $(widget).append(loading);
       $.getJSON(build_url(), function(data){
-        s.callback(data);
+        typeof s.callback == 'function' && s.callback(data);
         
         if (s.loading_text) loading.remove();
         if (s.intro_text) list.before(intro);

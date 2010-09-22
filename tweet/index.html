@@ -12,34 +12,61 @@
     <script language="javascript" src="deserialize.js" type="text/javascript"></script>
     <script language="javascript" src="tweet.search.js" type="text/javascript"></script>
     <script type='text/javascript'>
-      $(document).ready(tweetSearch.ready);
+      $(document).ready(function() {
+        tweetSearch.ready();
+        
+        $("#user_tweets").tweet({
+          username: ["johnnyaboh"],
+          avatar_size: 32,
+          count: 5,
+          loading_text: "searching twitter...",
+          callback: function() {
+            setTimeout(function() {$('.status').draggable({opacity: 0.5, revert: true })}, 0);
+          }
+        });
+      });
     </script>
   </head>
   <body>
     <div class='container'>
-      <h1>Search Twitter</h1>
+      <div class='left'>
+        <h1>Search Twitter</h1>
       
-      <h3>Search demo</h3>
-      <form onsubmit="tweetSearch.search($('input[name=q]').val()); return false;">
-      <label>Find</label>
-      <input type="text" name="q">
-      <input type="submit" name="submit" value="Search">
-      </form>
+        <h3>Search demo</h3>
+        <form onsubmit="tweetSearch.search($('input[name=q]').val()); return false;">
+        <label>Find</label>
+        <input type="text" name="q">
+        <input type="submit" name="submit" value="Search">
+        </form>
+      </div>
+      
+      <div class='right'>
+        <h1>johnnyaboh's tweets</h1>
+      </div>
+      
+      <div style="clear: both"></div>
       
       <div id="drop-area">
         Drag a tweet here to get its link
       </div>
       
-      <div class="navigator" style="display: none">
-        <div class="links">
-          <a href="#" onclick="tweetSearch.prev($('input[name=q]').val()); return false;">prev</a>
-          |
-          <a href="#" onclick="tweetSearch.next($('input[name=q]').val()); return false;">next</a>
+      <div class='left'>
+        <div class="navigator" style="display: none">
+          <div class="links">
+            <a href="#" onclick="tweetSearch.prev($('input[name=q]').val()); return false;">prev</a>
+            |
+            <a href="#" onclick="tweetSearch.next($('input[name=q]').val()); return false;">next</a>
+          </div>
+          <div class="page">page <span>1</span></div>
         </div>
-        <div class="page">page <span>1</span></div>
+      
+        <div id='search_results' class='query'></div>
       </div>
       
-      <div id='search_results' class='query'></div>
+      <div class='right'>
+        <div id='user_tweets' class='query'></div>
+      </div>
+      <div style="clear: both"></div>
       <p class='copyright'>something nifty from <a href="http://www.focustheweb.com">focustheweb</a><span class="trade">&trade;</span> | <a href="http://github.com/potomak/tweet/">contribute</a></p>
     </div>
   </body>
